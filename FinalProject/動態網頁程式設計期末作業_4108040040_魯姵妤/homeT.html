@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Roll Calling System</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <style>
+        input[type=text], select, input[type=password] {
+            width: 200px;
+            padding: 12px 20px;
+            margin: 8px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=password]{
+            width: 150px;
+            padding: 12px 20px;
+            margin: 8px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: large;
+            font-family: "Audiowide", sans-serif;
+        }
+        #button{
+            width:200px;
+            height:30px;
+            font-family:"Audiowide", sans-serif;
+            background-color:white;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+        #button:hover{
+            background-color:LightSkyBlue;
+            color:white;
+        }
+
+        #button1{
+            width:100px;
+            height:50px;
+            font-family:"Audiowide", sans-serif;
+            background-color:white;
+            border:2px solid CornflowerBlue;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+        #button1:hover{
+            background-color:LightSkyBlue;
+            color:white;
+        }
+		table{
+            width:300px;
+            border-collapse:collapse;
+        }
+        table,td,th{
+            border:solid;
+        }
+        caption{
+            font-size:large;
+            font-weight:bold;
+        }
+    </style>
+
+    <script>
+        window.onload = start();
+        
+        var ID;
+        function start() {
+            /*讀取自己的class*/
+            var url = location.href;
+
+            var temp = url.split("?");
+
+            ID = temp[1].split("%27");
+         
+            //alert(ID);
+
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("print").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "HomeT.php?q=" + ID, true);
+            xhttp.send();
+        }
+       
+
+        function PlusClass() {  //新增class
+
+            var set="<h2>Input Class Information</h2>";
+            //set += "<form method = 'get' action='Class.php'>";
+            set += "<label>Class name:</label>";
+            set += "<input type='text' id='ClassID' name='ClassID'><br><br>";
+            set += "<label>Class password:</label>";
+            set += "<input type='password' id='ClassPassword' name='ClassPassword'><br><br>";
+            set += "<label>Class time: </label>";
+            set += "<input type='time' id='time' name='time'><br><br>";
+           // set += "<input type='hidden' id='TeacherID' name='TeacherID'><br><br>";
+            set += "<input type='submit' value='Submit' style='height:30px;width:80px;font-size:20px;background-color:FloralWhite;'><br>";
+            //set += "</form>";
+            //var send = ID;
+            //alert(ID);
+            document.getElementById("TeacherID").value = ID;
+            document.getElementById("add").innerHTML = set;
+        }
+
+        /*取IP位置*/
+        function getLocation(a) {
+            classnumber = a;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+            else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+        
+        function showPosition(position) {
+            /*
+            local.innerHTML = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longituder;
+            */
+            
+            var LA = position.coords.latitude;
+            var LO = position.coords.longitude;
+            var time = new Date();
+
+            document.getElementById("LA").value = LA;
+            document.getElementById("LO").value = LO;
+            document.getElementById("time").value = time;
+            document.getElementById("ID").value = ID;
+            document.getElementById("class").value = classnumber;
+            document.getElementById("C").value = 1;
+
+            ip.submit();  //交出form
+            
+        }
+
+        function show(a) {
+            classnumber = a;
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("name").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "show.php?q=" + classnumber, true);
+            xhttp.send();
+
+        }
+        function OK() {
+            document.getElementById("name").innerHTML = "";
+        }
+        
+        function out() {
+            location = "main.html";
+        }
+
+    </script>
+</head>
+<body>
+    <button type="button" onclick="out()" id="button1">Sign out</button>
+
+    <center>
+       
+
+        <!--新增class-->
+        <button type="button" onclick="PlusClass()" id="button1">Add class</button>
+        <form method = 'post' action='Class.php'>
+            <div id="add"></div>
+            <input type='hidden' id='ST' name='ST' value="1">  <!--1 is teacher-->
+            <input type='hidden' id='TeacherID' name='TeacherID'>
+        </form>
+
+        <form method='post' id="ip" action='roll.php'>
+            <input type='hidden' id='LA' name='LA'>  
+            <input type='hidden' id='LO' name='LO'>
+            <input type='hidden' id='time' name='time'>  
+            <input type='hidden' id='ID' name='ID'>
+            <input type='hidden' id='class' name='classnumber'>
+            <input type='hidden' id='C' name='C'>
+        </form>
+
+        <div id="local"></div><br />
+        <div id="print"></div><br />
+        <div id="name"></div><br />
+
+    </center>
+</body>
+</html>

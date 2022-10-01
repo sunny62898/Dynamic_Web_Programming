@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <style type="text/css">
+        table{
+            width:300px;
+            border-collapse:collapse;
+        }
+        table,td,th{
+            border:solid;
+        }
+        caption{
+            font-size:large;
+            font-weight:bold;
+        }
+        tr:nth-child(even){
+            background-color: lightcyan;
+        }
+        tr{
+            background-color:lightgoldenrodyellow;
+        }
+        tr.odd{
+            background-color: lightcyan;
+        }
+
+    </style>
+	
+	
+</head>
+<body>
+
+
+    <div id="showbankerpoint"></div>
+    <p style="text-align:center;margin-top:10px">
+        <img id="poke1" src="BackCard.jpg" alt="poke image">
+        <img id="poke2" src="BackCard.jpg" alt="poke image">
+        <img id="poke3" src="BackCard.jpg" alt="poke image">
+        <img id="poke4" src="BackCard.jpg" alt="poke image">
+        <img id="poke5" src="BackCard.jpg" alt="poke image">
+        <img id="poke6" src="BackCard.jpg" alt="poke image">
+    </p>
+
+    <form action="blackjacknew.php" method="get" style="text-align:center; margin-top:40px;">
+        <label name="money" id="money" style="font-size:30px; font-weight:bold;">請輸入要下注的金額：</label>
+        <input type="number" name="chip" id="chip" min="1" max="1000" style="width:60px;height:30px;font-size:larger;"><br />
+        <!--<input name="play" id="play" type="button" value="START" onclick="start()" style="width:140px; height:50px;font-size:25px;font-weight:bolder">-->
+		<input type="submit" value="START" style="width:140px; height:50px;font-size:25px;font-weight:bolder">
+        
+		<div id="question"></div>  <!--加注-->
+        <div id="yes"></div>
+        <div id="no"></div>
+        <div id="hint"></div>  <!--發牌-->
+        <div id="stand"></div>  <!--停牌-->
+        <div id="result"></div>  <!--結果-->
+        <div id="again"></div>  <!--再玩一次-->
+        <div id="aplay"></div>  <!--全輸再玩一次-->
+		
+     </form>
+    <form action="loginin.php" method="get" style="text-align:center; margin-top:40px;">
+		<input type="submit" value="Login" style="width:140px; height:50px;font-size:25px;font-weight:bolder">
+    </form>
+	<form action="login.php" method="get" style="text-align:center; margin-top:40px;">
+		<input type="submit" value="Create account" style="width:140px; height:50px;font-size:15px;font-weight:bolder">
+     </form>
+
+   
+
+    <p style="text-align:center;margin-top:50px">
+        <img id="poke7" src="BackCard.jpg" alt="poke image">
+        <img id="poke8" src="BackCard.jpg" alt="poke image">
+        <img id="poke9" src="BackCard.jpg" alt="poke image">
+        <img id="poke10" src="BackCard.jpg" alt="poke image">
+        <img id="poke11" src="BackCard.jpg" alt="poke image">
+        <img id="poke12" src="BackCard.jpg" alt="poke image">
+
+    </p>
+    <div id="showplayerpoint"></div>
+
+    <span style="margin-left:50px;vertical-align:middle;">
+        <img id="pixastock"  src="pixastock1.jpg" alt="pixastock image">
+    </span>
+    
+    <span id="pix" style="font-size:40px;margin-top:0px;vertical-align:middle;font-weight:bold;"></span>
+
+
+    <span id="table" style="float:right;"></span>   <!--顯示出牌統計-->
+    
+    
+
+    <!--**************************
+    4108040040 魯姵妤 第八次作業12/23
+    4108040040 PeiYuLuThe Eighth Homework 12/23
+    **************************-->
+
+    
+</body>
+</html>

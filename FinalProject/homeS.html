@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Roll Calling System</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <style>
+        input[type=text], select, input[type=password] {
+            width: 200px;
+            padding: 12px 20px;
+            margin: 8px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: large;
+            font-family: "Audiowide", sans-serif;
+        }
+
+        #button{
+            width:100px;
+            height:50px;
+            font-family:"Audiowide", sans-serif;
+            background-color:white;
+            border:2px solid CornflowerBlue;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+        #button:hover{
+            background-color:LightSkyBlue;
+            color:white;
+        }
+    </style>
+
+    <script>
+
+        window.onload = start();
+
+        var ID;
+        function start() {
+
+            /*讀取自己所在班級*/
+            var url = location.href;
+
+            var temp = url.split("?");
+
+            ID = temp[1].split("%27");
+
+            //alert(ID);
+            /*
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("print").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "HomeS.php?q=" + ID, true);
+            xhttp.send();
+            */
+        }
+
+
+
+
+        function Rollcall() {   //點名
+            var set="<h2>Input Class Information</h2>";
+            //set += "<form method = 'get' action='Class.php'>";
+            set += "<label>Class name:</label>";
+            set += "<input type='text' id='ClassID' name='ClassID'><br><br>";
+            set += "<label>Class password:</label>";
+            set += "<input type='password' id='ClassPassword' name='ClassPassword'><br><br>";
+            // set += "<input type='hidden' id='TeacherID' name='TeacherID'><br><br>";
+            set += "<input type='submit' value='Submit' style='height:30px;width:80px;font-size:20px;background-color:FloralWhite;'><br>";
+            //set += "</form>";
+            //document.getElementById("StudentID").value = ID;
+            document.getElementById("add").innerHTML = set;
+            getLocation();
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+            else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            /*
+            local.innerHTML = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longituder;
+            */
+
+            var LA = position.coords.latitude;
+            var LO = position.coords.longitude;
+            var time = new Date();
+            document.getElementById("StudentID").value = ID;
+            document.getElementById("LA").value = LA;
+            document.getElementById("LO").value = LO;
+            document.getElementById("time").value = time;
+       
+
+        }
+
+        function out() {
+            location = "main.html";
+        }
+        
+
+    </script>
+</head>
+<body>
+    <button type="button" onclick="out()" id="button">Sign out</button>
+    <center>
+        
+        
+        <!--加入class-->
+        <button type="button" onclick="Rollcall()" id="button">Roll call</button>
+        <form method='post' action='Class.php'>
+            <div id="add"></div>
+            <input type='hidden' id='ST' name='ST' value="2">  <!--2 is student-->
+            <input type='hidden' id='StudentID' name='StudentID'>
+            <input type='hidden' id='LA' name='LA'>
+            <input type='hidden' id='LO' name='LO'>
+            <input type='hidden' id='time' name='time'>
+        </form>
+
+        <div id="print"></div>
+    </center>
+</body>
+</html>

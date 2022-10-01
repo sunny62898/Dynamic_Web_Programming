@@ -1,0 +1,667 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <style type="text/css">
+        body{
+            background-color:mintcream;
+        }
+        table{
+            width:1000px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        th{
+            background-color:lightgoldenrodyellow;
+        }
+        caption{
+            font-size:30px;
+            font-weight:bolder;
+            color:white;
+            background-color:darkblue;
+        }
+    </style>
+
+    <script>
+        /*
+          JSON只是一個字串
+          JsonData[] = '{"company":[' +
+            '{"Name":"XXX","initial asset":"123","initial liabilities":"-123",'+'
+             "Product":[{"ProductName":"XXX","price":"000" ,"number":"123456" ,"record date":"20201033"},'+'
+            {"ProductName":"XXX","price":"000" ,"number":"123456" ,"record date":"20201033"}],
+            "Employee":[{"EmployeeName":"XXX","Salary":"000" ,"record date":"20201033"},'+'
+            {"EmployeeName":"XXX","Salary":"000" ,"record date":"20201033"}],
+            "Materials":[{"MaterialsName":"XXX","price":"000" ,"number":"123456" ,"record date":"20201033"},'+'
+            {"MaterialsName":"XXX","price":"000" ,"number":"123456" ,"record date":"20201033"}]};
+        */
+     
+      //var data = {company:[]};
+       //localStorage.setItem("Account", JSON.stringify(data));
+        //localStorage.companNumber;
+       // localStorage.companyNumber = 0;
+        //設定計算公司的數量
+       if (localStorage.companyNumber) {
+                var companyNumber = Number(localStorage.companyNumber);
+            }
+            else {
+                localStorage.companyNumber = 0;
+                var companyNumber = Number(localStorage.companyNumber);
+            }
+        
+  
+        function showTable() {
+            var local = localStorage.getItem("Account");
+            var localData = JSON.parse(local);
+            
+            if (local == null) {
+                document.getElementById("table").innerHTML = '';
+            }
+            else {
+                
+                var show = "<table><caption>Account</caption>" +
+                       "<thead><tr><th>Company</th><th>Initial assets</th><th>Initial liabilities</th></tr>" +
+                       "</thead><tbody>";
+                //document.writeln(companyNumber);
+           
+                
+                for (var i = 0; i < companyNumber; i++) {
+                    
+                    show += "<tr><td>" + localData.company[i].Name + "</td><td>" + localData.company[i].InitialAssets + "</td><td>" + localData.company[i].InitialLiabilities + "</td></tr>";
+                    
+                    document.getElementById("table").innerHTML = show;
+                }
+                show += "</tbody></table>";
+                document.getElementById("table").innerHTML = show;
+                
+                var current="";
+                for (var j = 0; j < companyNumber; j++) {
+                    
+                    //var currentAsset = Number(localData.company[j].InitialAssets);
+                    //document.writeln(localData.company[j].ProductCount);
+                    current += "<table><caption>Current state</caption>" +
+                       "<thead><tr><th>Company</th><th>Current assets</th><th>Revenue</th><th>Expenses</th></tr>" +
+                       "</thead><tbody>";
+                    current += "<tr><td>" + localData.company[j].Name + "</td><td>" + localData.company[j].CurrentAssets + "</td><td>" + localData.company[j].Revenue + "</td><td>" + localData.company[j].Expenses + "</td></tr>";
+                    
+                    current += "<tr><th>Product</th></tr>";
+                    current += "<tr><th>Name</th><th>Number</th><th>Price</th><th>Record Date</th></tr>";
+                    var produtnumber = localData.company[j].ProductCount;
+                    //document.writeln(produtnumber);
+                    for (var k = 0; k < produtnumber; k++) {
+                        //current += "<tr><th>Name</th><th>Number</th><th>Record Date</th></tr>";
+                        current += "<tr><td>" + localData.company[j].Product[k].productName + "</td><td>" + localData.company[j].Product[k].productNumber + "</td><td>" + localData.company[j].Product[k].productPrice + "</td><td>" + localData.company[j].Product[k].productDate + "</td></tr>";
+                        //document.writeln(localData.company[j].Product[k].productDate);
+                    }
+                    current += "<tr><th>Employee Name</th><th>Salary</th><th>Record Date</th></tr>";
+                    var employeenumber=localData.company[j].EmployeeCount;
+                    for (var o = 0; o < employeenumber; o++) {
+                        current += "<tr><td>" + localData.company[j].Employee[o].employeeName + "</td><td>" + localData.company[j].Employee[o].employeeSalary + "</td><td>" + localData.company[j].Employee[o].employeeDate + "</td></tr>";
+                    }
+                    current += "<tr><th>Materials Name</th><th>Number</th><th>Price</th><th>Record Date</th></tr>";
+                    var materialsnumber = localData.company[j].MaterialsCount;
+                    for (var t = 0; t < materialsnumber; t++) {
+                        current += "<tr><td>" + localData.company[j].Materials[t].materialsName + "</td><td>" + localData.company[j].Materials[t].materialsNumber + "</td><td>" + localData.company[j].Materials[t].materialsPrice + "</td><td>" + localData.company[j].Materials[t].materialsDate + "</td></tr>";
+                    }
+                    current += "</tbody></table>";
+                    document.getElementById("tableR").innerHTML = current;
+                }
+                
+            }
+
+        }
+        
+        
+        
+        /*add開始*/
+        function addcompany() {
+            var Basic = document.getElementById("basic");
+            Basic.innerHTML = '';
+            var Product = document.getElementById("product");
+            Product.innerHTML = '';
+            var Employee = document.getElementById("employee");
+            Employee.innerHTML = '';
+            var Materials = document.getElementById("materials");
+            Materials.innerHTML = '';
+
+            var Basic = document.getElementById("basic");
+            Basic.innerHTML += "<h3>Basic Information</h3><label>Company name:</label><input type='text' id='CompanyName' />&nbsp;<label>Initial assets:</label><input type='number' id='InitialAssets' />&nbsp;<label>Initial liabilities:</label><input type='number' id='InitialLiabilities' />&nbsp;"
+            registerListeners(document.getElementById("CompanyName"));
+            Basic.innerHTML += "<input type='button' id='BasicButton' value='submit' onclick='InputBasic()'><br><br>";
+            ask();
+        }
+
+        function registerListeners(object) {   //DOM
+            var helpText=document.getElementById("product");
+            object.addEventListener("focus",
+               function () { helpText.innerHTML = "input name"; },
+               false);
+            object.addEventListener("blur",
+               function () { helpText.innerHTML = "input name"; }, false);
+        }
+
+        function addproduct() {
+            var Basic = document.getElementById("basic");
+            Basic.innerHTML = '';
+            var Product = document.getElementById("product");
+            Product.innerHTML = '';
+            var Employee = document.getElementById("employee");
+            Employee.innerHTML = '';
+            var Materials = document.getElementById("materials");
+            Materials.innerHTML = '';
+
+            var Product = document.getElementById("product");
+            Product.innerHTML += "<br><label>Company name:</label>";
+            Product.innerHTML += "<input type='text' id='SetCompany' />&nbsp;";
+            Product.innerHTML += "<input type='button' value='submit' onclick='Inputproduct()'><br><br>";   //DOM
+            ask();
+        }
+
+        function addemployee() {
+            var Basic = document.getElementById("basic");
+            Basic.innerHTML = '';
+            var Product = document.getElementById("product");
+            Product.innerHTML = '';
+            var Employee = document.getElementById("employee");
+            Employee.innerHTML = '';
+            var Materials = document.getElementById("materials");
+            Materials.innerHTML = '';
+
+            var Employee = document.getElementById("employee");
+            Employee.innerHTML += "<br><label>Company name:</label>";
+            Employee.innerHTML += "<input type='text' id='SetCompany' />&nbsp;";
+            Employee.innerHTML += "<input type='button' value='submit' onclick='Inputempolyee()'><br><br>";
+            ask();
+        }
+        
+        function addmaterials() {
+            var Basic = document.getElementById("basic");
+            Basic.innerHTML = '';
+            var Product = document.getElementById("product");
+            Product.innerHTML = '';
+            var Employee = document.getElementById("employee");
+            Employee.innerHTML = '';
+            var Materials = document.getElementById("materials");
+            Materials.innerHTML = '';
+
+            var Product = document.getElementById("materials");
+            Product.innerHTML += "<br><label>Company name:</label>";
+            Product.innerHTML += "<input type='text' id='SetCompany' />&nbsp;";
+            Product.innerHTML += "<input type='button' value='submit' onclick='Inputmaterials()'><br><br>";
+            ask();
+        }
+        /*add結束*/
+
+        /*刪除好夥伴
+        var Basic = document.getElementById("basic");
+        Basic.innerHTML = '';
+        var Product = document.getElementById("product");
+        Product.innerHTML = '';
+        var Employee = document.getElementById("employee");
+        Employee.innerHTML = '';
+        var Materials = document.getElementById("materials");
+        Materials.innerHTML = '';
+        */
+        /*input開始*/
+        function InputBasic() {
+            
+
+            var CompanyName = document.getElementById("CompanyName").value;
+            var InitialAssets = document.getElementById("InitialAssets").value;
+            var InitialLiabilities = document.getElementById("InitialLiabilities").value;
+            if (CompanyName == '' || InitialAssets == '' || InitialLiabilities == '') {
+                alert("Fields that are required");
+                ask();
+            }
+
+            else {
+                var b = 0;
+                var get = localStorage.getItem("Account");
+                var getdata = JSON.parse(get);
+                for (var i = 0; i < companyNumber; i++) {
+                    if (CompanyName == getdata.company[i].Name) {
+                        alert("This name is already been entered.");
+                        ask();
+                        b++;
+                        document.getElementById("basic").innerHTML = '';
+                    }
+                }
+                if (b == 0) {
+                    var zero = 0;
+                    var storage = JSON.parse(localStorage.getItem("Account"));
+                    var newobj = { "Name": CompanyName, "InitialAssets": InitialAssets, "InitialLiabilities": InitialLiabilities, "CurrentAssets": InitialAssets, "Product": [], "ProductCount": zero, "Employee": [], "EmployeeCount": zero, "Materials": [], "MaterialsCount": zero, "Revenue": zero, "Expenses": zero };
+                    storage.company.push(newobj);
+                    localStorage.removeItem("Account");
+                    localStorage.setItem("Account", JSON.stringify(storage));
+                    companyNumber++;
+                    localStorage.companyNumber = companyNumber;
+                    document.getElementById("table").innerHTML = '';
+                    document.getElementById("tableR").innerHTML = '';
+                    showTable();
+                    document.getElementById("basic").innerHTML = '';
+                    ask();
+                }
+                
+            }     
+        }
+
+        function Inputproduct() {
+
+
+            var SetCompany = document.getElementById("SetCompany").value;
+            if (SetCompany == '') {
+                alert("Not Entered!");
+                ask();
+                var div = document.getElementById("product");
+                div.innerHTML = '';  //沒有輸入東西就不輸入
+            }
+            else {   //搜尋這家公司有沒有被登錄過
+                    var b = 0;
+                    var get = localStorage.getItem("Account");
+                    var getdata = JSON.parse(get);
+                    for (var i = 0; i < companyNumber; i++) {
+                        if (SetCompany == getdata.company[i].Name) {
+                            b++;
+                            var Product = document.getElementById("product");
+                            Product.innerHTML = '';
+                            Product.innerHTML += "<h2>Company name:" + SetCompany + "</h2>";
+                            Product.innerHTML += "<label>Product name:</label>";
+                            Product.innerHTML += "<input type='text' id='productName' />&nbsp;";
+                            Product.innerHTML += "<br><label>Product number:</label>";
+                            Product.innerHTML += "<input type='number' id='productNumber' />&nbsp;";
+                            Product.innerHTML += "<br><label>Product price:</label>";
+                            Product.innerHTML += "<input type='number' id='productPrice' />&nbsp;";
+                            Product.innerHTML += "<br><label>Record date:</label>";
+                            Product.innerHTML += "<input type='date' id='productDate' />&nbsp;";
+                            Product.innerHTML += "<br><input type='button' value='submit' onclick='Product(" + i + ")'>";
+                            ask();
+                            break;
+                        }
+                    }
+                       /* 
+                        else{
+                            alert("Not this company!");
+                            ask();
+                            var div = document.getElementById("product");
+                            div.innerHTML = '';  //沒有輸入東西就不輸入
+                            break;
+                        }*/
+                        if (b == 0) {
+                            alert("Not this company!");
+                            ask();
+                            var div = document.getElementById("product");
+                            div.innerHTML = '';  //沒有輸入東西就不輸入
+                        }
+                    }
+                    
+                
+        }
+
+        function Inputempolyee() {
+           
+            var SetCompany = document.getElementById("SetCompany").value;
+            if (SetCompany == '') {
+                alert("Not Entered!");
+                ask();
+                var diee = document.getElementById("employee");
+                diee.innerHTML = '';  //沒有輸入東西就不輸入
+            }
+            else {   //搜尋這家公司有沒有被登錄過
+                var b = 0;
+                var get = localStorage.getItem("Account");
+                var getdata = JSON.parse(get);
+                for (var i = 0; i < companyNumber; i++) {
+                    if (SetCompany == getdata.company[i].Name) {
+                        b++;
+                        var Employee = document.getElementById("employee");
+                        Employee.innerHTML = '';
+                        Employee.innerHTML += "<h2>Company name:" + SetCompany + "</h2>";
+                        Employee.innerHTML += "<label>Employee name:</label>";
+                        Employee.innerHTML += "<input type='text' id='employeeName' />&nbsp;";
+                        Employee.innerHTML += "<br><label>Record date:</label>";
+                        Employee.innerHTML += "<input type='date' id='employeeDate' />&nbsp;";
+                        Employee.innerHTML += "<br><label>Salary:</label>";
+                        Employee.innerHTML += "<input type='number' id='employeeSalary' />&nbsp;";
+                        Employee.innerHTML += "<br><input type='button' value='submit' onclick='Employee(" + i + ")'>"; //DOM
+                        ask();
+                        break;
+                    }
+                    /*else {
+                        alert("Not this company!");
+                        ask();
+                        var div = document.getElementById("employee");
+                        div.innerHTML = '';  //沒有輸入東西就不輸入
+                        break;
+                    }*/
+                }
+                if (b == 0) {
+                    alert("Not this company!");
+                    ask();
+                    var div = document.getElementById("employee");
+                    div.innerHTML = '';  //沒有輸入東西就不輸入
+                   
+                }
+                    
+            }
+
+        }
+        
+        
+        function Inputmaterials() {
+            
+
+            var SetCompany = document.getElementById("SetCompany").value;
+            if (SetCompany == '') {
+                alert("Not Entered!");
+                ask();
+                var div = document.getElementById("materials");
+                div.innerHTML = '';  //沒有輸入東西就不輸入
+            }
+            else {   //搜尋這家公司有沒有被登錄過
+                var b = 0;
+                var get = localStorage.getItem("Account");
+                var getdata = JSON.parse(get);
+                for (var i = 0; i < companyNumber; i++) {
+                    if (SetCompany == getdata.company[i].Name) {
+                        b++;
+                        var Materials = document.getElementById("materials");
+                        Materials.innerHTML = '';
+                        Materials.innerHTML += "<h2>Company name:" + SetCompany + "</h2>";
+                        Materials.innerHTML += "<label>Materials name:</label>";
+                        Materials.innerHTML += "<input type='text' id='materialsName' />&nbsp;";
+                        Materials.innerHTML += "<br><label>Materials number:</label>";
+                        Materials.innerHTML += "<input type='number' id='materialsNumber' />&nbsp;";
+                        Materials.innerHTML += "<br><label>Materials price:</label>";
+                        Materials.innerHTML += "<input type='number' id='materialsPrice' />&nbsp;";
+                        Materials.innerHTML += "<br><label>Record date:</label>";
+                        Materials.innerHTML += "<input type='date' id='materialsDate' />&nbsp;";
+                        Materials.innerHTML += "<br><input type='button' value='submit' onclick='Materials(" + i + ")'>";
+                        ask();
+                        break;
+                    }
+                    /*else {
+                        alert("Not this company!");
+                        ask();
+                        var div = document.getElementById("materials");
+                        div.innerHTML = '';  //沒有輸入東西就不輸入
+                        break;
+
+                    }*/
+                }
+                if (b == 0) {
+                    alert("Not this company!");
+                    ask();
+                    var div = document.getElementById("materials");
+                    div.innerHTML = '';  //沒有輸入東西就不輸入
+                }
+                    
+            }
+        }
+        /*input結束*/
+
+        /*save data開始*/
+        function Product(com) {
+            var ProductName = document.getElementById("productName").value;
+            var ProductNumber = document.getElementById("productNumber").value;
+            var ProductPrice = document.getElementById("productPrice").value;   
+            var ProductDate = document.getElementById("productDate").value;
+            if (ProductName == '' || ProductNumber == '' || ProductPrice == '' || ProductDate == '') {
+                alert("Fields that are required");
+                ask();
+
+            }
+            else {
+                var storage = JSON.parse(localStorage.getItem("Account"));
+
+                //計算總資產
+                var sum = Number(ProductNumber) *Number(ProductPrice);
+                //document.writeln(sum);
+                
+                storage.company[com].CurrentAssets = Number(storage.company[com].CurrentAssets) + sum;
+                storage.company[com].Revenue = Number(storage.company[com].Revenue) + sum;
+
+                //計算product次數
+                storage.company[com].ProductCount = Number(storage.company[com].ProductCount) + Number(1);
+
+                var newobj = { "productName": ProductName, "productNumber": ProductNumber, "productPrice": ProductPrice, "productDate": ProductDate };
+                storage.company[com].Product.push(newobj);
+                localStorage.removeItem("Account");
+                localStorage.setItem("Account", JSON.stringify(storage));  //會把整個JSON重新定義
+                
+
+                document.getElementById("table").innerHTML = '';
+                document.getElementById("tableR").innerHTML = '';
+                showTable();
+                document.getElementById("product").innerHTML = '';
+            }
+           
+
+        }
+        
+        function Employee(com) {
+            var EmployeeName = document.getElementById("employeeName").value;
+            var EmployeeDate = document.getElementById("employeeDate").value;
+            var Salary = document.getElementById("employeeSalary").value;
+            
+            if (EmployeeName == '' || EmployeeDate == '' || Salary == '') {
+                alert("Fields that are required");
+                ask();
+            }
+            else {
+                
+                //計算總資產
+                var storage = JSON.parse(localStorage.getItem("Account"));
+                storage.company[com].CurrentAssets = Number(storage.company[com].CurrentAssets) - Salary;
+                storage.company[com].Expenses = Number(storage.company[com].Expenses) - Salary;
+                //計算product次數
+                storage.company[com].EmployeeCount = Number(storage.company[com].EmployeeCount) + Number(1);
+
+                var newobj = { "employeeName": EmployeeName, "employeeDate": EmployeeDate, "employeeSalary": Salary };
+                storage.company[com].Employee.push(newobj);
+                localStorage.removeItem("Account");
+                localStorage.setItem("Account", JSON.stringify(storage));  //會把整個JSON重新定義
+
+
+                document.getElementById("table").innerHTML = '';
+                document.getElementById("tableR").innerHTML = '';
+                showTable();
+                document.getElementById("employee").innerHTML = '';
+            }
+        }
+   
+        function Materials(com) {
+            var MaterialsName = document.getElementById("materialsName").value;
+            var MaterialsNumber = document.getElementById("materialsNumber").value;
+            var MaterialsPrice = document.getElementById("materialsPrice").value;
+            var MaterialsDate = document.getElementById("materialsDate").value;
+            if (MaterialsName == '' || MaterialsNumber == '' || MaterialsPrice == '' || MaterialsDate == '') {
+                alert("Fields that are required");
+                ask();
+            }
+            else {
+                
+                //計算總資產
+                var sum = Number(MaterialsNumber) * Number(MaterialsPrice);
+                var storage = JSON.parse(localStorage.getItem("Account"));
+                storage.company[com].CurrentAssets = Number(storage.company[com].CurrentAssets) - sum;
+                storage.company[com].Expenses = Number(storage.company[com].Expenses) - sum;
+                //計算product次數
+                storage.company[com].MaterialsCount = Number(storage.company[com].MaterialsCount) + Number(1);
+
+                var newobj = { "materialsName": MaterialsName, "materialsNumber": MaterialsNumber, "materialsPrice": MaterialsPrice, "materialsDate": MaterialsDate };
+                storage.company[com].Materials.push(newobj);
+                localStorage.removeItem("Account");
+                localStorage.setItem("Account", JSON.stringify(storage));  //會把整個JSON重新定義
+
+                document.getElementById("table").innerHTML = '';
+                document.getElementById("tableR").innerHTML = '';
+                showTable();
+                document.getElementById("materials").innerHTML = '';
+
+            }
+        }
+        /*save data結束*/
+        function currentasset(com , money) {  //(公司順序,獲利金額)
+            var save = JSON.parse(localStorage.getItem("Account"));
+            var profit = Number(save.company[com].CurrentAssets);
+            profit = profit - money;
+            save.company[com].CurrentAssets = profit;
+        }
+        
+        function AssetSort() {   //照資產排
+            var local = localStorage.getItem("Account");
+            var localData = JSON.parse(local);
+            var p = 0;
+            for (var k = 1; k < companyNumber; k++) {
+                for (var j = 1; j < companyNumber - p; j++) {
+                    //document.writeln(localData.company[j-1].CurrentAssets);
+                    if (localData.company[j - 1].CurrentAssets > localData.company[j].CurrentAssets) {
+
+                        var temp = localData.company[j];
+                        localData.company[j] = localData.company[j - 1];
+                        localData.company[j - 1] = temp;
+
+                        localStorage.removeItem("Account");
+                        localStorage.setItem("Account", JSON.stringify(localData));
+                    }
+                }
+                p++;
+            }
+            
+            showTable();
+            ask();
+        }
+        
+        function DateSort() {    //照日期排
+            var local = localStorage.getItem("Account");
+            var localData = JSON.parse(local);
+            for (var i = 0; i < companyNumber; i++) {
+                var pro = localData.company[i].ProductCount;
+                var em=localData.company[i].EmployeeCount;
+                var ma=localData.company[i].MaterialsCount;
+                var u = 0;
+                for (var j = 1; j < pro; j++) {
+                    for (var t = 1; t < pro - u; t++) {
+                        var before = Date.parse(localData.company[i].Product[t - 1].productDate);
+                        var after = Date.parse(localData.company[i].Product[t].productDate);
+                        if (before > after) {
+
+                            var temp = localData.company[i].Product[t];
+                            localData.company[i].Product[t] = localData.company[i].Product[t - 1];
+                            localData.company[i].Product[t - 1] = temp;
+
+                            localStorage.removeItem("Account");
+                            localStorage.setItem("Account", JSON.stringify(localData));
+                        }
+                    }
+                    u++;
+                }
+
+                var u = 0;
+                for (var j = 1; j < em; j++) {
+                    for (var t = 1; t < em - u; t++) {
+                        var before = Date.parse(localData.company[i].Employee[t - 1].employeeDate);
+                        var after = Date.parse(localData.company[i].Employee[t].employeeDate);
+                        if (before > after) {
+
+                            var temp = localData.company[i].Employee[t];
+                            localData.company[i].Employee[t] = localData.company[i].Employee[t - 1];
+                            localData.company[i].Employee[t - 1] = temp;
+
+                            localStorage.removeItem("Account");
+                            localStorage.setItem("Account", JSON.stringify(localData));
+                        }
+                    }
+                    u++;
+                }
+
+                var u = 0;
+                for (var j = 1; j < ma; j++) {
+                    for (var t = 1; t < em - u; t++) {
+                        var before = Date.parse(localData.company[i].Materials[t - 1].materialsDate);
+                        var after = Date.parse(localData.company[i].Materials[t].materialsDate);
+                        if (before > after) {
+
+                            var temp = localData.company[i].Materials[t];
+                            localData.company[i].Materials[t] = localData.company[i].Materials[t - 1];
+                            localData.company[i].Materials[t - 1] = temp;
+
+                            localStorage.removeItem("Account");
+                            localStorage.setItem("Account", JSON.stringify(localData));
+                        }
+                    }
+                    u++;
+                }
+            }
+            showTable();
+            ask();
+        }
+        
+        function ask() {
+            setTimeout(function () { alert("Continue?"); }, 5*60*1000);
+        }
+        function body() {
+            document.getElementById("head").style.fontSize = "40px";
+            
+        }
+        
+        function bigImg(x) {
+            x.style.height = "69px";
+            x.style.width = "100px";
+        }
+
+        function normalImg(x) {
+            x.style.height = "42px";
+            x.style.width = "60px";
+        }
+        
+        /*function reset() {
+            var data = {company:[]};
+            localStorage.setItem("Account", JSON.stringify(data));
+            localStorage.companyNumber = 0;
+            showTable();
+            ask();
+        }*/
+
+        window.addEventListener("load", showTable, false);  //DOM
+        window.addEventListener("mousemove", body, false);  //DOM
+       
+
+    </script>
+</head>
+<body>
+    <!--DOM-->
+    <img style="float:right" onmouseover="bigImg(this)" onmouseout="normalImg(this)" border="0" src="money.jpg" alt="money" width="60" height="42">
+    <h1 id="head">Accounting Information System</h1>
+    
+    <form>
+        <input type="button" onclick="addcompany()" value="Add company" />
+        <input type="button" onclick="addproduct()" value="Add product" />
+        <input type="button" onclick="addemployee()" value="Add empolyee" />
+        <input type="button" onclick="addmaterials()" value="Add materials" />
+        <input type="button" onclick="AssetSort()" value="Sort by asset" />
+        <input type="button" onclick="DateSort()" value="Sort by date" />
+
+
+
+        <div id="basic"></div>
+        <div id="product"></div>
+        <div id="employee"></div>
+        <div id="materials"></div>
+        <div id="edit"></div>
+        
+
+        
+    </form>
+    <br />
+    <div id="table"></div>
+    <div id="tableR"></div>
+
+
+    <!--**************************
+    4108040040 魯姵妤 第6次作業12/2
+    4108040040 PeiYuLuThe sixth Homework 12/2
+    **************************-->
+
+</body>
+</html>

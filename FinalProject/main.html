@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Roll Calling System</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <style>
+        input[type=text], select ,input[type=password]{
+            width: 200px;
+            padding: 12px 20px;
+            margin: 8px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+
+        }
+        body{
+            font-size:large;
+            font-family:"Audiowide", sans-serif;
+
+        }
+		
+		
+    </style>
+
+    <script>
+       
+    </script>
+</head>
+<body>
+    
+    <center>
+        <h1>LOGIN</h1>
+        <form method = "post" action="LoginForm.php">
+            <label>Identity</label>
+            <select name="identity">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+            </select><br>
+            <label>ID number:</label>
+            <input type="text" id="ID" name="ID"><br>
+            <label>password:</label>
+            <input type="password" id="password" name="password"><br><br>
+            <input type="submit" value="Submit" style="height:30px;width:80px;font-size:20px;background-color:FloralWhite;">
+
+        </form>
+        <br />
+        <h3>Unregistered? <a href="createTeacher.html">Teacher</a> or <a href="createStudent.html">Student</a></h3>
+       
+        
+    </center>
+</body>
+</html>

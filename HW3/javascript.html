@@ -1,0 +1,417 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <style type="text/css">
+        table{
+            margin-left:auto;
+            margin-right:auto;
+            width:900px;
+            border-collapse:collapse;
+
+            
+        }
+        th{
+            width:300px;
+            text-align:left;
+        }
+        tr:nth-child(even){
+            background-color: lightcyan;
+
+
+        }
+        tr{
+            background-color:lightgoldenrodyellow;
+        }
+        tr.odd{
+            background-color: lightcyan;
+        }
+        table,td,th{
+            border:solid;
+        }
+        caption{
+            font-size:large;
+            font-weight:bold;
+        }
+
+        
+
+
+    </style>
+    <script type="text/javascript">
+        var integer1;
+        var integer2;
+        var integer3;
+        var integer4;
+        var integer5;
+        var integer6;
+        var integer7;
+        var integer8;
+        while (1) {
+            integer1 = window.prompt("Input the value1(smaller than 1000):");
+            if (integer1 > 1000 || integer1 < 0) {
+                continue;
+            }
+            integer2 = window.prompt("Input the value2(smaller than 1000):");
+            if (integer2 > 1000 || integer2 < 0) {
+                continue;
+            }
+            integer3 = window.prompt("Input the value3(smaller than 1000):");
+            if (integer3 > 1000 || integer3 < 0) {
+                continue;
+            }
+            integer4 = window.prompt("Input the value4(smaller than 1000):");
+            if (integer4 > 1000 || integer4 < 0) {
+                continue;
+            }
+            integer5 = window.prompt("Input the value5(smaller than 1000):");
+            if (integer5 > 1000 || integer5 < 0) {
+                continue;
+            }
+            integer6 = window.prompt("Input the value6(smaller than 1000):");
+            if (integer6 > 1000 || integer6 < 0) {
+                continue;
+            }
+            integer7 = window.prompt("Input the value7(smaller than 1000):");
+            if (integer7 > 1000 || integer7 < 0) {
+                continue;
+            }
+            integer8 = window.prompt("Input the value8(smaller than 1000):");
+            if (integer8 > 1000 || integer8 < 0) {
+                continue;
+            }
+            else {
+                break;
+            }
+        }
+        
+
+
+        var i, j, max, min, mid;
+        var armstrong1, armstrong2, armstrong3, armstrong4, armstrong5, armstrong6, armstrong7, armstrong8;
+        var Fibonacci1, Fibonacci2, Fibonacci3, Fibonacci4, Fibonacci5, Fibonacci6, Fibonacci7, Fibonacci8;
+        var prime1, prime2, prime3, prime4, prime5, prime6, prime7, prime8;
+        max = maxium(integer1, integer2, integer3, integer4, integer5, integer6, integer7, integer8);
+        min = minium(integer1, integer2, integer3, integer4, integer5, integer6, integer7, integer8);
+        med = median(integer1, integer2, integer3, integer4, integer5, integer6, integer7, integer8);
+        
+
+        //Armstrong Number
+        armstrong1 = armstrongnum(integer1);
+        armstrong2 = armstrongnum(integer2);
+        armstrong3 = armstrongnum(integer3);
+        armstrong4 = armstrongnum(integer4);
+        armstrong5 = armstrongnum(integer5);
+        armstrong6 = armstrongnum(integer6);
+        armstrong7 = armstrongnum(integer7);
+        armstrong8 = armstrongnum(integer8);
+
+        
+        
+        document.writeln("<table>")  //table開始
+        document.writeln("<caption>" + "Input: " + integer1 + ", " + integer2 + ", " + integer3 + ", " + integer4 + ", " + integer5 + ", " + integer6 + ", " + integer7 + ", " + integer8 + "</caption>");
+        document.writeln("<thead>")  //thead開始
+        document.writeln("<tr class='odd'><th>Maxium</th> " +"<td>"+ max +"</td><tr>");
+        document.writeln("<tr><th>Minium</th> " + "<td>" + min + "</td><tr>");
+        document.writeln("<tr  class='odd'><th>Median </th> " + "<td>" + med + "</td><tr>");
+        document.writeln("</thead>")  //thead結束
+        document.writeln("<tbody>")  //tbody開始
+
+        //prime numbers
+        prime1 = primenum(integer1);
+        prime2 = primenum(integer2);
+        prime3 = primenum(integer3);
+        prime4 = primenum(integer4);
+        prime5 = primenum(integer5);
+        prime6 = primenum(integer6);
+        prime7 = primenum(integer7);
+        prime8 = primenum(integer8);
+
+        //Armstrog number
+        document.writeln("<tr><th>" + integer1 + " is Armstrog number </th><td>" + Boolean(integer1 == armstrong1) + "</td></tr>");
+        document.writeln("<tr><th>" + integer2 + " is Armstrog number </th><td>" + Boolean(integer2 == armstrong2) + "</td></tr>");
+        document.writeln("<tr><th>" + integer3 + " is Armstrog number </th><td>" + Boolean(integer3 == armstrong3) + "</td></tr>");
+        document.writeln("<tr><th>" + integer4 + " is Armstrog number </th><td>" + Boolean(integer4 == armstrong4) + "</td></tr>");
+        document.writeln("<tr><th>" + integer5 + " is Armstrog number </th><td>" + Boolean(integer5 == armstrong5) + "</td></tr>");
+        document.writeln("<tr><th>" + integer6 + " is Armstrog number </th><td>" + Boolean(integer6 == armstrong6) + "</td></tr>");
+        document.writeln("<tr><th>" + integer7 + " is Armstrog number </th><td>" + Boolean(integer7 == armstrong7) + "</td></tr>");
+        document.writeln("<tr><th>" + integer8 + " is Armstrog number </th><td>" + Boolean(integer8 == armstrong8) + "</td></tr>");
+
+
+        //Fibonacci sequences
+        Fibonacci1 = Fibonaccinum(integer1);
+        Fibonacci2 = Fibonaccinum(integer2);
+        Fibonacci3 = Fibonaccinum(integer3);
+        Fibonacci4 = Fibonaccinum(integer4);
+        Fibonacci5 = Fibonaccinum(integer5);
+        Fibonacci6 = Fibonaccinum(integer6);
+        Fibonacci7 = Fibonaccinum(integer7);
+        Fibonacci8 = Fibonaccinum(integer8);
+
+        document.writeln("</tbody>")  //tbody結束
+
+        function maxium(a, b, c, d, e, f, g, h) {
+            return Math.max(a, Math.max(b, Math.max(c, Math.max(d, Math.max(e, Math.max(f, Math.max(g, h)))))));
+        }
+        function minium(a, b, c, d, e, f, g, h) {
+            return Math.min(a, Math.min(b, Math.min(c, Math.min(d, Math.min(e, Math.min(f, Math.min(g, h)))))));
+        }
+        function median(a, b, c, d, e, f, g, h) {  //由大排到小
+
+            a = parseInt(a,10);
+            b = parseInt(b,10);
+            c = parseInt(c,10);
+            d = parseInt(d,10);
+            e = parseInt(e,10);
+            f = parseInt(f,10);
+            g = parseInt(g,10);
+            h = parseInt(h,10);
+
+            if (a < b) {
+                a = a + b;
+                b = a - b;
+                a = a - b;
+            }
+
+            if (b < c) {
+                b = b + c;
+                c = b - c;
+                b = b - c;
+            }
+            if (c < d) {
+                c = c + d;
+                d = c - d;
+                c = c - d;
+            }
+            if (d < e) {
+                d = d + e;
+                e = d - e;
+                d = d - e;
+            }
+            if (e < f) {
+                e = e + f;
+                f = e - f;
+                e = e - f;
+            }
+            if (f < g) {
+                f = f + g;
+                g = f - g;
+                f = f - g;
+            }
+            if (g < h) {
+                g = g + h;
+                h = g - h;
+                g = g - h;
+            }
+
+            //第一次順序排好  h會是最小的值
+            if (a < b) {
+                a = a + b;
+                b = a - b;
+                a = a - b;
+            }         
+            if (b < c) {
+                b = b + c;
+                c = b - c;
+                b = b - c;
+            }
+            if (c < d) {
+                c = c + d;
+                d = c - d;
+                c = c - d;
+            }
+            if (d < e) {
+                d = d + e;
+                e = d - e;
+                d = d - e;
+            }
+            if (e < f) {
+                e = e + f;
+                f = e - f;
+                e = e - f;
+            }
+            if (f < g) {
+                f = f + g;
+                g = f - g;
+                f = f - g;
+            }
+            //第二次順序排好 g是第二小的值
+            if (a < b) {
+                a = a + b;
+                b = a - b;
+                a = a - b;
+            }
+            if (b < c) {
+                b = b + c;
+                c = b - c;
+                b = b - c;
+            }
+            if (c < d) {
+                c = c + d;
+                d = c - d;
+                c = c - d;
+            }
+            if (d < e) {
+                d = d + e;
+                e = d - e;
+                d = d - e;
+            }
+            if (e < f) {
+                e = e + f;
+                f = e - f;
+                e = e - f;
+            }
+            //第三次順序排好 f是第三小的值
+            if (a < b) {
+                a = a + b;
+                b = a - b;
+                a = a - b;
+            }
+            if (b < c) {
+                b = b + c;
+                c = b - c;
+                b = b - c;
+            }
+            if (c < d) {
+                c = c + d;
+                d = c - d;
+                c = c - d;
+            }
+            if (d < e) {
+                d = d + e;
+                e = d - e;
+                d = d - e;
+            }
+            //第四次順序排好 e是第四小的值
+            if (a < b) {
+                a = a + b;
+                b = a - b;
+                a = a - b;
+            }
+            if (b < c) {
+                b = b + c;
+                c = b - c;
+                b = b - c;
+            }
+            if (c < d) {
+                c = c + d;
+                d = c - d;
+                c = c - d;
+            }
+            //第五次順序排好 d是第五小的值
+            if (a < b) {
+                a = a + b;
+                b = a - b;
+                a = a - b;
+            }
+            if (b < c) {
+                b = b + c;
+                c = b - c;
+                b = b - c;
+            }
+            //第六次順序排好 c是第六小的值
+            if (a < b) {
+                a = a + b;
+                b = a - b;
+                a = a - b;
+            }
+            //確定順序 a,b,c,d,e,f,g,h 為由大到小的順序
+            
+            return ((d + e) / 2);
+
+
+        }
+        function armstrongnum(num) {
+          
+            num = parseInt(num, 10);
+            var sum=0;
+            var hud = num / 100;
+            if (hud >= 1) {
+                hud = Math.floor(hud);
+                sum = sum + Math.pow(hud, 3);
+                num = num - (hud * 100);
+            }
+ 
+            if ((num / 10) >= 1) {
+                var ten = Math.floor(num / 10);
+                sum = sum + Math.pow(ten, 3);
+                num = num - (ten * 10);
+            }
+           
+            if (num >= 1) {
+                sum = sum + Math.pow(num, 3);
+            }
+         
+            return sum;
+            
+        }
+
+        function Fibonaccinum(num) {
+            num = parseInt(num, 10);
+            var num1 = 0;
+            var num2 = 1;
+            var i = 0;
+            var sum = 0;
+            document.writeln("<tr><th>");
+            if (num == 0) {
+                document.writeln("The Fibonacci sequences of " + num + "</th><td>" + num);
+
+            }
+            else {
+                document.writeln("The Fibonacci sequences of " + num + "</th><td>" + num1 + "," + num2);
+                for (i = 0; i < num - 1; i++) {
+                    sum = num1 + num2;
+                    num1 = num2;
+                    num2 = sum;
+                    document.writeln("," + num2);
+                }
+            }
+            
+            document.writeln("</td></tr>");
+        }
+        function primenum(num) {
+            var i = 2;
+            var pr = 0;
+            var tnum = 0;;
+            num = parseInt(num, 10);
+            document.writeln("<tr><th>");
+            if (num == 1 || num == 0) {
+                document.writeln(num+" prime number"+"</th>" + "<td>It's neither prime number nor composite number.");
+                document.writeln("</td></tr>");
+            }
+            else if (num == 2) {
+                document.writeln( num + " prime number</th>" +"<td>"+ Boolean(true));
+            }
+            else {
+                
+                for (i = 2; i < num; i++) {
+                    tnum = 0;
+                    tnum = num % i;
+                    if (tnum == 0) {
+                        document.writeln(num + " prime number</th>" +"<td>"+ Boolean(false));
+                        pr++;
+                        break;
+                    }
+                }
+                if (pr == 0) {
+                    document.writeln(num + " prime number</th>" +"<td>"+ Boolean(true));
+                }
+
+            }
+            document.writeln("</td></tr>");
+        }
+
+        document.writeln("</table>");  //table結束
+
+
+    </script>
+</head>
+<body>
+
+</body>
+<!--***************************
+4108040040 魯姵妤 第三次作業11/4
+4108040040 PeiYuLuTheThird Homework 11/4
+***************************-->
+</html>

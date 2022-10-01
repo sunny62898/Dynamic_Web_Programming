@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8">
+   
+    <script>
+        var name1, gender1, date1, phone1, email1;
+        var name2, gender2, date2, phone2, email2;
+        var name3, gender3, date3, phone3, email3;
+        
+        function printtable() {
+           
+                        //第一人
+            name1 = document.getElementById("name1").value;            gender1 = document.getElementById("form").gender1.value;            date1 = document.getElementById("date1").value;            phone1 = document.getElementById("phone1").value;            email1 = document.getElementById("email1").value;            //第二人            name2 = document.getElementById("name2").value;            gender2 = document.getElementById("form").gender2.value;            date2 = document.getElementById("date2").value;            phone2 = document.getElementById("phone2").value;            email2 = document.getElementById("email2").value;            //第三人            name3 = document.getElementById("name3").value;            gender3 = document.getElementById("form").gender3.value;            date3 = document.getElementById("date3").value;            phone3 = document.getElementById("phone3").value;            email3 = document.getElementById("email3").value;                        if (name1 == '' ) {
+                alert("第1人的姓名為必填項目！");
+            }            else if( name2 == '' ){                alert("第2人的姓名為必填項目！");
+            }            else if (name3 == '') {
+                alert("第3人的姓名為必填項目！");
+            }            else {
+                css1();
+            }
+                                                  
+        }
+        function css1() {
+            document.open();
+            document.writeln("<table style='width:900px;border:solid black;border-color:black;border-width:5px;background-color:lightgoldenrodyellow;border-collapse: collapse;'>");  //table開始            document.writeln("<caption style='text-align: left'><h1>人員資料調查問卷</h1>");            document.writeln("<h1><input type='button' onclick='css1()' value='CSS風格1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' onclick='css2()' value='CSS風格2'></h1></caption>");            document.writeln("<thead>"); //thead            document.writeln("<tr>" + "<th style='border:solid black;'>姓名</th>" + "<th style='border:solid black;'>性別</th>" + "<th style='border:solid black;'>生日</th>" + "<th style='border:solid black;'>手機</th>" + "<th style='border:solid black;'>信箱</th>" + "</tr></thead>");            document.writeln("<tbody><tr>" + "<td style='border:solid black;'>" + name1 + "</td>" + "<td style='border:solid black;'>" + gender1 + "</td>" + "<td style='border:solid black;'>" + date1 + "</td>" + "<td style='border:solid black;'>" + phone1 + "</td>" + "<td style='border:solid black;'>" + email1 + "</td>" + "</tr>");            document.writeln("<tr>" + "<td style='border:solid black;'>" + name2 + "</td>" + "<td style='border:solid black;'>" + gender2 + "</td>" + "<td style='border:solid black;'>" + date2 + "</td>" + "<td style='border:solid black;'>" + phone2 + "</td>" + "<td style='border:solid black;'>" + email2 + "</td>" + "</tr>");            document.writeln("<tr>" + "<td style='border:solid black;'>" + name3 + "</td>" + "<td style='border:solid black;'>" + gender3 + "</td>" + "<td style='border:solid black;'>" + date3 + "</td>" + "<td style='border:solid black;'>" + phone3 + "</td>" + "<td style='border:solid black;'>" + email3 + "</td>" + "</tr></tbody>");            document.writeln("</table>");
+        }
+
+        function css2() {
+            document.open();
+            document.writeln("<table style='width:900px;border:dashed;border-width:3px;border-color:lightcyan;background-color:midnightblue;'>");  //table開始            document.writeln("<caption style='text-align: left'><h1>人員資料調查問卷</h1>");            document.writeln("<h1><input type='button' onclick='css1()' value='CSS風格1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' onclick='css2()' value='CSS風格2'></h1></caption>");            document.writeln("<thead>"); //thead            document.writeln("<tr>" + "<th style='border:groove;color:white;'>姓名</th>" + "<th style='border:groove;color:white;'>性別</th>" + "<th style='border:groove;color:white;'>生日</th>" + "<th style='border:groove;color:white;'>手機</th>" + "<th style='border:groove;color:white;'>信箱</th>" + "</tr></thead>");            document.writeln("<tbody><tr>" + "<td style='border:groove;color:white;'>" + name1 + "</td>" + "<td style='border:groove;color:white;'>" + gender1 + "</td>" + "<td style='border:groove;color:white;'>" + date1 + "</td>" + "<td style='border:groove;color:white;'>" + phone1 + "</td>" + "<td style='border:groove;color:white;'>" + email1 + "</td>" + "</tr>");            document.writeln("<tr>" + "<td style='border:groove;color:white;'>" + name2 + "</td>" + "<td style='border:groove;color:white;'>" + gender2 + "</td>" + "<td style='border:groove;color:white;'>" + date2 + "</td>" + "<td style='border:groove;color:white;'>" + phone2 + "</td>" + "<td style='border:groove;color:white;'>" + email2 + "</td>" + "</tr>");            document.writeln("<tr>" + "<td style='border:groove;color:white;'>" + name3 + "</td>" + "<td style='border:groove;color:white;'>" + gender3 + "</td>" + "<td style='border:groove;color:white;'>" + date3 + "</td>" + "<td style='border:groove;color:white;'>" + phone3 + "</td>" + "<td style='border:groove;color:white;'>" + email3 + "</td>" + "</tr></tbody>");            document.writeln("</table>");
+        }
+       
+      
+        
+    </script>
+</head>
+<body>
+    <h1>人員資料調查問卷</h1>
+    <form id="form">
+        <h2>第1個人</h2>
+            <label for="name">姓名:</label>
+            <input type="text" id="name1" name="name"><br>
+            <label for="gender">性別:</label>
+            <input type="radio" id="male1" name="gender1" value="男">
+            <label for="male">Male</label>
+            <input type="radio" id="female1" name="gender1" value="女">
+            <label for="female">Female</label><br>
+            <label for="date">生日:</label>
+            <input type="date" id="date1" name="date"><br>
+            <label for="phone">手機:</label>
+            <input type="tel" id="phone1" name="phone"><br>
+            <label for="email">信箱:</label>
+            <input type="email" id="email1" name="email"><br>
+
+        
+        <h2>第2個人</h2>
+
+            <label for="name">姓名:</label>
+            <input type="text" id="name2" name="name"><br>
+            <label for="gender">性別:</label>
+            <input type="radio" id="male2" name="gender2" value="男">
+            <label for="male">Male</label>
+            <input type="radio" id="female2" name="gender2" value="女">
+            <label for="female">Female</label><br>
+            <label for="date">生日:</label>
+            <input type="date" id="date2" name="date"><br>
+            <label for="phone">手機:</label>
+            <input type="tel" id="phone2" name="phone"><br>
+            <label for="email">信箱:</label>
+            <input type="email" id="email2" name="email"><br>
+
+
+        <h2>第3個人</h2>
+            <label for="name">姓名:</label>
+            <input type="text" id="name3" name="name"><br>
+            <label for="gender">性別:</label>
+            <input type="radio" id="male3" name="gender3" value="男">
+            <label for="male">Male</label>
+            <input type="radio" id="female3" name="gender3" value="女">
+            <label for="female">Female</label><br>
+            <label for="date">生日:</label>
+            <input type="date" id="date3" name="date"><br>
+            <label for="phone">手機:</label>
+            <input type="tel" id="phone3" name="phone"><br>
+            <label for="email">信箱:</label>
+            <input type="email" id="email3" name="email"><br><br>
+        <input type="submit" onclick="printtable()" value="生成表格">
+    </form>
+
+
+   
+
+</body>
+</html>

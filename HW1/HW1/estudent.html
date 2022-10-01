@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+		<meta name="description" content="Student of NCHU">
+		<meta name="keywords" content="NCHU,student,中興大學,學生,興大入口">
+		<meta name="author" content="NCHU">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>NCHU</title>
+		
+		
+	</head>
+	
+	<body>
+		
+		<h4 align ="right"><a href="cstudent.html">中文版</a></h4>
+		<h1>National Chung Hsing University</h1>
+		<blockquote>
+		<h2>Please enter information</h2>
+			<blockquote>
+				<form method = "post" autocomplete="on" target="_self" action = "ecenter.html">
+					<input type="hidden" name="date" value="2020">
+					<input type="hidden" name="subject" value="form">
+					<input type="hidden" name="direction" value="nchu">
+					<p><label>Name
+						<input name="name" type="text" size="30">
+					</label></p>
+					<p><label>Student ID
+						<input name="number" type="text" size="15">
+					</label></p><br>
+					<p><label>Password
+						<input type="password" id="password" name="password">
+					</label></p><br>
+					<label for="phone">Telephone number</label><br>
+						<input type="tel" id="phone" name="phone" placeholder="0912345678" pattern="[0-9]{10}"><br>
+					<p><label>email
+						<input id="email" name="email" type="text">
+					</label></p>
+					<p>Gender</p>
+					<input type="radio" id="male" name="gender" value="male">
+						<label for="male">male</label>
+					<input type="radio" id="female" name="gender" value="female">
+						<label for="female">female</label>
+					<input type="radio" id="other" name="gender" value="other">
+						<label for="other">Other</label><br>
+					<label for="birthday">Birthday</label><br>
+						<input type="date" id="birthday" name="birthday">
+					<p>Colleges</p>
+						<input type="checkbox" id="colleges1" name="colleges1" value="liberalarts">
+							<label for="colleges1">College of Liberal Arts</label><br>
+						<input type="checkbox" id="colleges2" name="colleges2" value=" agriculture">
+							<label for="colleges2">College of Agriculture and Natural Resources</label><br>
+						<input type="checkbox" id="colleges3" name="colleges3" value="science">
+							<label for="colleges3">College of Science</label><br>
+						<input type="checkbox" id="colleges4" name="colleges4" value="engineering">
+							<label for="colleges4">College of Engineering</label><br>
+						<input type="checkbox" id="colleges5" name="colleges5" value="lifesciences">
+							<label for="colleges5">College of Life Sciences</label><br>
+						<input type="checkbox" id="colleges6" name="colleges6" value="veterinary">
+							<label for="colleges6">College of Veterinary Medicine</label><br>
+						<input type="checkbox" id="colleges7" name="colleges7" value="management">
+							<label for="colleges7">College of Management</label><br>
+						<input type="checkbox" id="colleges8" name="colleges8" value="law">
+							<label for="colleges8">College of Law and Politics</label><br>
+						<input type="checkbox" id="colleges9" name="colleges9" value="computer">
+							<label for="colleges9">College of Electrical Engineering and Computer Science</label><br>
+						<input type="checkbox" id="colleges10" name="colleges10" value="innovation">
+							<label for="colleges10">College of Innovation and Industry Liaison</label><br><br>
+						<label for="grade">grade</label><br>
+							<select id="grade" name="grade">
+								<option value="first">first</option>
+								<option value="second">second</option>
+								<option value="third">third</option>
+								<option value="fourth">fourth</option>
+								<option value="other">other</option>
+							</select><br><br>
+						<label>Select your favorite color：</label>
+							<input type="color" id="color" name="color" value="#ff0000"><br><br>
+						<label for="homepage">Input your homepage:</label>
+							<input type="url" id="homepage" name="homepage"><br>
+						<p>Time to focus on schoolwork each day</p>
+						<input list="time" name="time">
+							<datalist id="time">
+								<option value="less than 2 hours">
+								<option value="between 2 and 3 hours">
+								<option value="between 3 and 4 hours">
+								<option value="between 4 and 5 hours">
+								<option value="more than 5 hours">
+							</datalist><br><br>
+						 <label>Bed time</label>
+							<input type="time" id="time" name="time"><br><br>
+						<label>Love to NCHU（between 0 to 100）:</label>
+							<input type="range" id="range" name="range" min="0" max="100">
+						<p>Suggestions for school</p><blockquote>
+							<textarea name="message" rows="20" cols="50"></textarea></blockquote>
+						<br><br>
+						<!--<button type="button" onclick="alert('確定要送出嗎？')">送出
+							<input type="submit" value="Submit">
+						</button>-->
+						<input type="submit" value="Submit">
+						&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset">
+				</form>
+			</blockquote>
+		</blockquote>
+		<h2 align ="right"><a href="ecenter.html">back to home</a></h2>
+		<!--***************************
+		4108040040 魯姵妤 第一次作業 10/7
+		4108040040 PeiYuLuThe first Homework 10/7
+		***************************-->
+	</body>
+
+
+</html>

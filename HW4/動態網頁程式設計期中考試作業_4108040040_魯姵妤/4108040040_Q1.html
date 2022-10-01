@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script>
+        function password() {
+            var pass = document.getElementById("password").value;
+            var X1, X2;
+            X1 = parseInt(pass, 10);
+            //X1 = X1.toString(2);
+            //document.writeln(X1);
+            X2 = parseInt(pass, 16);
+            // X2 = X2.toString(2);
+            //document.writeln(X2);
+
+            var b1 = 0, b2 = 0, i = 0, res1 = 0, res2 = 0;
+            while (X1 > 0) {
+                res1 = X1 % 2;
+                if (res1 == 1) {
+                    b1++;
+                }
+                X1 = parseInt(X1 / 2);
+            }
+            //document.writeln(b1);
+
+            while (X2 > 0) {
+                res2 = X2 % 2;
+                if (res2 == 1) {
+                    b2++;
+                }
+                X2 = parseInt(X2 / 2);
+
+
+            }
+            //document.writeln(b2);
+
+            if (b1 > b2) {
+                document.getElementById("print").innerHTML = "<p>Decipher:Time isn’t the problem, it’s getting out alive that’s the problem</p>";
+                //document.writeln("<p>Time isn’t the problem, it’s getting out alive that’s the problem</p>");
+            }
+            else if (b1 < b2) {
+                document.getElementById("print").innerHTML = "<p>Decipher:I told you, you have to start looking differently at the world</p>";
+                //document.writeln("<p>I told you, you have to start looking differently at the world</p>");
+            }
+            else if (b1 == b2) {
+                document.getElementById("print").innerHTML = "<p>Decipher:What’s happened has happened</p>";
+                //document.writeln("<p>What’s happened has happened</p>");
+            }
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <label for="password">Password:</label>
+    <input type="text" id="password" name="password">
+    <button onclick="password()">submit</button>
+    
+    <p id="print"></p>
+
+    
+
+</body>
+</html>

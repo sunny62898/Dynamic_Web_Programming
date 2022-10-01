@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <style>
+        input[type=text], select, input[type=tel], input[type=email],input[type=password]{
+            width: 200px;
+            padding: 12px 20px;
+            margin: 8px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Audiowide", sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Create a new account</h1>
+
+        <form method = "post" action="CreateS.php">
+
+            <label style="font-size:20px">NAME:</label>
+            <input type="text" id="name" name="name"><br>
+            <label style="font-size:20px">ID number:</label>
+            <input type="text" id="newID" name="newID"><br>
+			<label style="font-size:20px">password:</label>
+            <input type="password" id="password" name="password"><br><br>
+            <label style="font-size:20px">cellphone number:</label>
+            <input type="tel" id="cellphone" name="cellphone"><br>
+            <label style="font-size:20px">Adress:</label>
+            <input type="text" id="address" name="address"><br>
+            <label style="font-size:20px">e-mail:</label>
+            <input type="email" id="email" name="email"><br>
+            <br><input type="submit" value="Submit" style="height:30px;width:80px;font-size:20px;background-color:FloralWhite;">
+
+        </form>
+    </center>
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script>
+        var storge = sessionStorage.table + i;
+        document.writeln(storge);
+        var t = [];
+        function test() {
+            
+
+            for (var i = 0; i < 10; i++) {
+                t[i]=new Array(10);
+            }
+           
+            for (var j = 0; j < 10; j++) {
+                for (var i = 0; i < 10; i++) {
+                    t[i][j] = i * j;
+                    document.writeln(t[i][j]);
+                }
+            }
+            
+            
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <input type="button" onclick="test()" value="123" />
+    </form>
+   
+</body>
+</html>

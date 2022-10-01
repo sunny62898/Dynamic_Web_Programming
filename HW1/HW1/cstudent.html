@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+		<meta name="description" content="興大學生">
+		<meta name="keywords" content="NCHU,student,中興大學,學生,興大入口">
+		<meta name="author" content="NCHU">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>NCHU</title>
+		
+		
+	</head>
+	
+	<body>
+		
+		<h4 align ="right"><a href="estudent.html">English</a></h4>
+		<h1>國立中興大學</h1>
+		<blockquote>
+		<h2>請輸入資料</h2>
+			<blockquote>
+				<form method = "post" autocomplete="on" target="_self" action = "ccenter.html">
+					<input type="hidden" name="date" value="2020">
+					<input type="hidden" name="subject" value="form">
+					<input type="hidden" name="direction" value="nchu">
+					<p><label>姓名
+						<input name="name" type="text" size="30">
+					</label></p>
+					<p><label>學號
+						<input name="number" type="text" size="15">
+					</label></p><br>
+					<p><label>密碼
+						<input type="password" id="password" name="password">
+					</label></p><br>
+					<label for="phone">手機號碼</label><br>
+						<input type="tel" id="phone" name="phone" placeholder="0912345678" pattern="[0-9]{10}"><br>
+					<p><label>email
+						<input id="email" name="email" type="text">
+					</label></p>
+					<p>性別</p>
+					<input type="radio" id="male" name="gender" value="male">
+						<label for="male">男</label>
+					<input type="radio" id="female" name="gender" value="female">
+						<label for="female">女</label>
+					<input type="radio" id="other" name="gender" value="other">
+						<label for="other">其他</label><br>
+					<label for="birthday">生日</label><br>
+						<input type="date" id="birthday" name="birthday">
+					<p>學院（如雙主修不同學院的同學請勾選兩項）</p>
+						<input type="checkbox" id="colleges1" name="colleges1" value="liberalarts">
+							<label for="colleges1">文學院</label><br>
+						<input type="checkbox" id="colleges2" name="colleges2" value=" agriculture">
+							<label for="colleges2">農資學院</label><br>
+						<input type="checkbox" id="colleges3" name="colleges3" value="science">
+							<label for="colleges3">理學院</label><br>
+						<input type="checkbox" id="colleges4" name="colleges4" value="engineering">
+							<label for="colleges4">工學院</label><br>
+						<input type="checkbox" id="colleges5" name="colleges5" value="lifesciences">
+							<label for="colleges5">生命科學院</label><br>
+						<input type="checkbox" id="colleges6" name="colleges6" value="veterinary">
+							<label for="colleges6">獸醫學院</label><br>
+						<input type="checkbox" id="colleges7" name="colleges7" value="management">
+							<label for="colleges7">管理學院</label><br>
+						<input type="checkbox" id="colleges8" name="colleges8" value="law">
+							<label for="colleges8">法政學院</label><br>
+						<input type="checkbox" id="colleges9" name="colleges9" value="computer">
+							<label for="colleges9">電機資訊學院</label><br>
+						<input type="checkbox" id="colleges10" name="colleges10" value="innovation">
+							<label for="colleges10">創新產業暨國際學院</label><br><br>
+						<label for="grade">年級</label><br>
+							<select id="grade" name="grade">
+								<option value="first">一</option>
+								<option value="second">二</option>
+								<option value="third">三</option>
+								<option value="fourth">四</option>
+								<option value="other">其他</option>
+							</select><br><br>
+						<label>請選擇你最喜歡的顏色：</label>
+							<input type="color" id="color" name="color" value="#ff0000"><br><br>
+						<label for="homepage">輸入你常用的首頁:</label>
+							<input type="url" id="homepage" name="homepage"><br>
+						
+						<p>每天專注在課業上的時間</p>
+						<input list="time" name="time">
+							<datalist id="time">
+								<option value="2小時以下">
+								<option value="2~3小時">
+								<option value="3~4小時">
+								<option value="4~5小時">
+								<option value="5小時以上">
+							</datalist><br><br>
+						<label>睡覺時間</label>
+							<input type="time" id="time" name="time"><br><br>
+						<label>對學校的熱愛（0到100之間）:</label>
+							<input type="range" id="range" name="range" min="0" max="100">
+						<p>對學校的建議</p><blockquote>
+							<textarea name="message" rows="20" cols="50"></textarea></blockquote>
+						<br><br>
+						<!--<button type="button" onclick="alert('確定要送出嗎？')">送出
+							<input type="submit" value="Submit">
+						</button>-->
+						<input type="submit" value="Submit">
+						&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset">
+				</form>
+			</blockquote>
+		</blockquote>
+		<h2 align ="right"><a href="ccenter.html">回到首頁</a></h2>
+		<!--***************************
+		4108040040 魯姵妤 第一次作業 10/7
+		4108040040 PeiYuLuThe first Homework 10/7
+		***************************-->
+	</body>
+
+
+</html>
